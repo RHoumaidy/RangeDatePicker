@@ -136,8 +136,7 @@ internal class CalendarDateRangeManagerImpl(startMonthDate: Calendar,
             WEEK ->{
                 startDate.set(Calendar.DAY_OF_WEEK,calendarStyleAttributes.weekOffset+Calendar.SUNDAY)
                 finalEndDate = startDate.clone() as Calendar
-                startDate.add(Calendar.DATE, calendarStyleAttributes.weekOffset - (  startDate.get(Calendar.DAY_OF_WEEK) - Calendar.SUNDAY))
-                finalEndDate.add(Calendar.DATE, calendarStyleAttributes.weekOffset + (Calendar.SATURDAY - finalEndDate.get(Calendar.DAY_OF_WEEK)))
+                finalEndDate.add(Calendar.DATE, 6)
 
             }
             else -> throw IllegalArgumentException("Unsupported selectionMode: $selectionMode")

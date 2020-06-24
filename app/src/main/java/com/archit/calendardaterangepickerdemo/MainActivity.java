@@ -60,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "startSelectedDate: " + startSelectedDate.getTime().toString() + " :: endSelectedDate: " + endSelectedDate.getTime().toString());
         calendar.setSelectedDateRange(startSelectedDate, endSelectedDate);
 
+        Toast.makeText(MainActivity.this, "Start Date: " + calendar.getStartDate().getTime().toString() + " End date: " + calendar.getEndDate().getTime().toString(), Toast.LENGTH_SHORT).show();
+
+
         final Calendar current = (Calendar) startMonth.clone();
         current.add(Calendar.MONTH, 1);
         calendar.setCurrentMonth(current);
