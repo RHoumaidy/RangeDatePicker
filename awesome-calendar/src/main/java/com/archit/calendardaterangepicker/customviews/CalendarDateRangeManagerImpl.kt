@@ -13,6 +13,9 @@ import com.archit.calendardaterangepicker.models.CalendarStyleAttributes
 import com.archit.calendardaterangepicker.models.CalendarStyleAttributes.DateSelectionMode
 import com.archit.calendardaterangepicker.models.CalendarStyleAttributes.DateSelectionMode.*
 import java.util.Calendar
+import java.util.concurrent.RecursiveTask
+import kotlin.math.max
+import kotlin.math.min
 
 internal class CalendarDateRangeManagerImpl(startMonthDate: Calendar,
                                             endMonthDate: Calendar,
@@ -131,19 +134,29 @@ internal class CalendarDateRangeManagerImpl(startMonthDate: Calendar,
                 Log.w(TAG, "End date is ignored due date selection mode: $selectionMode")
                 finalEndDate = startDate.clone() as Calendar
                 finalEndDate.add(Calendar.DATE, calendarStyleAttributes.fixedDaysSelectionNumber)
+
+                startDate.timeInMillis = max(mStartSelectableDate.timeInMillis, startDate.timeInMillis)
+                finalEndDate.timeInMillis = min(mEndSelectableDate.timeInMillis, finalEndDate.timeInMillis)
+
             }
             FREE_RANGE -> finalEndDate = endDate
-            WEEK ->{
-                startDate.set(Calendar.DAY_OF_WEEK,calendarStyleAttributes.weekOffset+Calendar.SUNDAY)
+            WEEK -> {
+                startDate.add(Calendar.DATE, calendarStyleAttributes.weekOffset - (  startDate.get(Calendar.DAY_OF_WEEK) - Calendar.SUNDAY))
                 finalEndDate = startDate.clone() as Calendar
                 finalEndDate.add(Calendar.DATE, 6)
 
+                startDate.timeInMillis = max(mStartSelectableDate.timeInMillis, startDate.timeInMillis)
+                finalEndDate.timeInMillis = min(mEndSelectableDate.timeInMillis, finalEndDate.timeInMillis)
+
             }
-            MONTH->{
-                startDate.add(Calendar.DATE,- startDate.get(Calendar.DAY_OF_MONTH)+1)
+            MONTH -> {
+                startDate.add(Calendar.DATE, -startDate.get(Calendar.DAY_OF_MONTH) + 1)
                 finalEndDate = startDate.clone() as Calendar
                 finalEndDate.add(Calendar.MONTH, 1)
-                finalEndDate.add(Calendar.DATE,-1)
+                finalEndDate.add(Calendar.DATE, -1)
+
+                startDate.timeInMillis = max(mStartSelectableDate.timeInMillis, startDate.timeInMillis)
+                finalEndDate.timeInMillis = min(mEndSelectableDate.timeInMillis, finalEndDate.timeInMillis)
 
             }
             else -> throw IllegalArgumentException("Unsupported selectionMode: $selectionMode")
@@ -200,5 +213,13 @@ internal class CalendarDateRangeManagerImpl(startMonthDate: Calendar,
         if (start.after(end)) {
             throw InvalidDateException("Start date(${printDate(start)}) can not be after end date(${printDate(end)}).")
         }
+    }
+
+    override fun getStartSelectableDate(): Calendar {
+        return mStartSelectableDate
+    }
+
+    override fun getEndSelectableDate(): Calendar {
+        return mEndSelectableDate
     }
 }

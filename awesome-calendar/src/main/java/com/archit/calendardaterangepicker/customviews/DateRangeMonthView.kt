@@ -32,6 +32,8 @@ import com.archit.calendardaterangepicker.models.CalendarStyleAttributes.DateSel
 import com.archit.calendardaterangepicker.timepicker.AwesomeTimePickerDialog
 import com.archit.calendardaterangepicker.timepicker.AwesomeTimePickerDialog.TimePickerCallback
 import java.util.Calendar
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * Created by archit.shah on 08/09/2017.
@@ -142,12 +144,21 @@ internal class DateRangeMonthView : LinearLayout {
                 minSelectedDate = selectedDate
                 maxSelectedDate = selectedDate.clone() as Calendar
                 maxSelectedDate.add(Calendar.DATE, calendarStyleAttr.fixedDaysSelectionNumber)
+
+                minSelectedDate.timeInMillis =  max(dateRangeCalendarManager.getStartSelectableDate().timeInMillis,minSelectedDate.timeInMillis)
+                maxSelectedDate.timeInMillis =  min(dateRangeCalendarManager.getEndSelectableDate().timeInMillis,maxSelectedDate.timeInMillis)
+
             }
             WEEK -> {
                 minSelectedDate = selectedDate
                 minSelectedDate.add(Calendar.DATE, calendarStyleAttr.weekOffset - (  selectedDate.get(Calendar.DAY_OF_WEEK) - Calendar.SUNDAY))
                 maxSelectedDate = selectedDate.clone() as Calendar
                 maxSelectedDate.add(Calendar.DATE, 6)
+
+                minSelectedDate.timeInMillis =  max(dateRangeCalendarManager.getStartSelectableDate().timeInMillis,minSelectedDate.timeInMillis)
+                maxSelectedDate.timeInMillis =  min(dateRangeCalendarManager.getEndSelectableDate().timeInMillis,maxSelectedDate.timeInMillis)
+
+
             }
             MONTH -> {
                 minSelectedDate = selectedDate
@@ -155,6 +166,10 @@ internal class DateRangeMonthView : LinearLayout {
                 maxSelectedDate = selectedDate.clone() as Calendar
                 maxSelectedDate.add(Calendar.MONTH,1 )
                 maxSelectedDate.add(Calendar.DATE,-1)
+
+                minSelectedDate.timeInMillis =  max(dateRangeCalendarManager.getStartSelectableDate().timeInMillis,minSelectedDate.timeInMillis)
+                maxSelectedDate.timeInMillis =  min(dateRangeCalendarManager.getEndSelectableDate().timeInMillis,maxSelectedDate.timeInMillis)
+
             }
         }
 

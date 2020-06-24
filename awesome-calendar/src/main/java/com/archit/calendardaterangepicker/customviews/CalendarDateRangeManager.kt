@@ -39,4 +39,8 @@ interface CalendarDateRangeManager {
     fun isSelectableDate(date: Calendar): Boolean
 
     fun checkDateRange(selectedDate: Calendar): DateSelectionState
+
+    fun getStartSelectableDate():Calendar
+
+    fun getEndSelectableDate():Calendar
 }
