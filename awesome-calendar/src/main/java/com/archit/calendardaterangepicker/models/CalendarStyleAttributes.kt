@@ -13,7 +13,8 @@ interface CalendarStyleAttributes {
     enum class DateSelectionMode {
         FREE_RANGE,
         SINGLE,
-        FIXED_RANGE
+        FIXED_RANGE,
+        WEEK
     }
 
     var fonts: Typeface?

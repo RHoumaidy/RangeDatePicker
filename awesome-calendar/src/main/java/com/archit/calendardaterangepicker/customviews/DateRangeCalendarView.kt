@@ -132,6 +132,8 @@ class DateRangeCalendarView : LinearLayout, DateRangeCalendarViewApi {
         adapterEventCalendarMonths.setCalendarListener(calendarListener)
     }
 
+
+
     /**
      * To apply custom fonts to all the text views
      *
@@ -159,6 +161,10 @@ class DateRangeCalendarView : LinearLayout, DateRangeCalendarViewApi {
     override fun setWeekOffset(offset: Int) {
         calendarStyleAttr.weekOffset = offset
         adapterEventCalendarMonths.invalidateCalendar()
+    }
+
+    override fun setDateSelectionMode(mode: CalendarStyleAttributes.DateSelectionMode) {
+        calendarStyleAttr.dateSelectionMode = mode
     }
 
     /**

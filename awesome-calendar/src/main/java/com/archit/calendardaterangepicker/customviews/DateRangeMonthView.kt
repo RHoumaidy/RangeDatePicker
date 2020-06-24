@@ -28,9 +28,7 @@ import com.archit.calendardaterangepicker.customviews.DateView.DateState.SELECTA
 import com.archit.calendardaterangepicker.customviews.DateView.DateState.START
 import com.archit.calendardaterangepicker.customviews.DateView.OnDateClickListener
 import com.archit.calendardaterangepicker.models.CalendarStyleAttributes
-import com.archit.calendardaterangepicker.models.CalendarStyleAttributes.DateSelectionMode.FIXED_RANGE
-import com.archit.calendardaterangepicker.models.CalendarStyleAttributes.DateSelectionMode.FREE_RANGE
-import com.archit.calendardaterangepicker.models.CalendarStyleAttributes.DateSelectionMode.SINGLE
+import com.archit.calendardaterangepicker.models.CalendarStyleAttributes.DateSelectionMode.*
 import com.archit.calendardaterangepicker.timepicker.AwesomeTimePickerDialog
 import com.archit.calendardaterangepicker.timepicker.AwesomeTimePickerDialog.TimePickerCallback
 import java.util.Calendar
@@ -144,6 +142,13 @@ internal class DateRangeMonthView : LinearLayout {
                 minSelectedDate = selectedDate
                 maxSelectedDate = selectedDate.clone() as Calendar
                 maxSelectedDate.add(Calendar.DATE, calendarStyleAttr.fixedDaysSelectionNumber)
+            }
+            WEEK -> {
+                minSelectedDate = selectedDate
+                maxSelectedDate = selectedDate.clone() as Calendar
+                minSelectedDate.add(Calendar.DATE, calendarStyleAttr.weekOffset - (  selectedDate.get(Calendar.DAY_OF_WEEK) - Calendar.SUNDAY))
+                maxSelectedDate.add(Calendar.DATE, calendarStyleAttr.weekOffset + (Calendar.SATURDAY - selectedDate.get(Calendar.DAY_OF_WEEK)))
+
             }
         }
 

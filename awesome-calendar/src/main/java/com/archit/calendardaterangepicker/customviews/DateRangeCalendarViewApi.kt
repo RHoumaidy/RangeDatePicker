@@ -2,6 +2,7 @@ package com.archit.calendardaterangepicker.customviews
 
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
+import com.archit.calendardaterangepicker.models.CalendarStyleAttributes
 import java.util.Calendar
 
 interface DateRangeCalendarViewApi {
@@ -30,6 +31,8 @@ interface DateRangeCalendarViewApi {
      * @param offset 0-Sun, 1-Mon, 2-Tue, 3-Wed, 4-Thu, 5-Fri, 6-Sat
      */
     fun setWeekOffset(offset: Int)
+
+    fun setDateSelectionMode(mode: CalendarStyleAttributes.DateSelectionMode)
 
     /**
      * To set left navigation ImageView drawable

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.archit.calendardaterangepicker.customviews.CalendarListener;
 import com.archit.calendardaterangepicker.customviews.DateRangeCalendarView;
+import com.archit.calendardaterangepicker.models.CalendarStyleAttributes;
 
 import java.util.Calendar;
 
@@ -31,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
         calendar.setFonts(typeface);
 
         calendar.setCalendarListener(calendarListener);
-
+        calendar.setDateSelectionMode(CalendarStyleAttributes.DateSelectionMode.WEEK);
+//        calendar.setFixedDaysSelection(6);
         findViewById(R.id.btnReset).setOnClickListener(v -> calendar.resetAllSelectedViews());
 
 //        calendar.setNavLeftImage(ContextCompat.getDrawable(this,R.drawable.ic_left));

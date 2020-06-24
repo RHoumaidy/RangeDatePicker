@@ -11,9 +11,7 @@ import com.archit.calendardaterangepicker.customviews.DateTiming.END
 import com.archit.calendardaterangepicker.customviews.DateTiming.START
 import com.archit.calendardaterangepicker.models.CalendarStyleAttributes
 import com.archit.calendardaterangepicker.models.CalendarStyleAttributes.DateSelectionMode
-import com.archit.calendardaterangepicker.models.CalendarStyleAttributes.DateSelectionMode.FIXED_RANGE
-import com.archit.calendardaterangepicker.models.CalendarStyleAttributes.DateSelectionMode.FREE_RANGE
-import com.archit.calendardaterangepicker.models.CalendarStyleAttributes.DateSelectionMode.SINGLE
+import com.archit.calendardaterangepicker.models.CalendarStyleAttributes.DateSelectionMode.*
 import java.util.Calendar
 
 internal class CalendarDateRangeManagerImpl(startMonthDate: Calendar,
@@ -135,6 +133,13 @@ internal class CalendarDateRangeManagerImpl(startMonthDate: Calendar,
                 finalEndDate.add(Calendar.DATE, calendarStyleAttributes.fixedDaysSelectionNumber)
             }
             FREE_RANGE -> finalEndDate = endDate
+            WEEK ->{
+                startDate.set(Calendar.DAY_OF_WEEK,calendarStyleAttributes.weekOffset+Calendar.SUNDAY)
+                finalEndDate = startDate.clone() as Calendar
+                startDate.add(Calendar.DATE, calendarStyleAttributes.weekOffset - (  startDate.get(Calendar.DAY_OF_WEEK) - Calendar.SUNDAY))
+                finalEndDate.add(Calendar.DATE, calendarStyleAttributes.weekOffset + (Calendar.SATURDAY - finalEndDate.get(Calendar.DAY_OF_WEEK)))
+
+            }
             else -> throw IllegalArgumentException("Unsupported selectionMode: $selectionMode")
         }
         Log.i(TAG, "Selected dates: Start(${printDate(startDate)})-End(${printDate(finalEndDate)}) for mode:$selectionMode")
