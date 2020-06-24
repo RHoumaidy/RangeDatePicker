@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         calendar.setFonts(typeface);
 
         calendar.setCalendarListener(calendarListener);
-        calendar.setDateSelectionMode(CalendarStyleAttributes.DateSelectionMode.WEEK);
+        calendar.setDateSelectionMode(CalendarStyleAttributes.DateSelectionMode.MONTH);
 //        calendar.setFixedDaysSelection(6);
         findViewById(R.id.btnReset).setOnClickListener(v -> calendar.resetAllSelectedViews());
 

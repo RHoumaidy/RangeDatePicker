@@ -148,7 +148,13 @@ internal class DateRangeMonthView : LinearLayout {
                 minSelectedDate.add(Calendar.DATE, calendarStyleAttr.weekOffset - (  selectedDate.get(Calendar.DAY_OF_WEEK) - Calendar.SUNDAY))
                 maxSelectedDate = selectedDate.clone() as Calendar
                 maxSelectedDate.add(Calendar.DATE, 6)
-
+            }
+            MONTH -> {
+                minSelectedDate = selectedDate
+                minSelectedDate.add(Calendar.DATE,  - selectedDate.get(Calendar.DAY_OF_MONTH)+1)
+                maxSelectedDate = selectedDate.clone() as Calendar
+                maxSelectedDate.add(Calendar.MONTH,1 )
+                maxSelectedDate.add(Calendar.DATE,-1)
             }
         }
 

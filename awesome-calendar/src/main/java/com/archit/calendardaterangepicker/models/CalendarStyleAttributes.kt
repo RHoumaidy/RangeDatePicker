@@ -14,7 +14,8 @@ interface CalendarStyleAttributes {
         FREE_RANGE,
         SINGLE,
         FIXED_RANGE,
-        WEEK
+        WEEK,
+        MONTH
     }
 
     var fonts: Typeface?

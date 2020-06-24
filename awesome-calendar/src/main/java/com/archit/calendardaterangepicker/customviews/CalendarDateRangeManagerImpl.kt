@@ -139,6 +139,13 @@ internal class CalendarDateRangeManagerImpl(startMonthDate: Calendar,
                 finalEndDate.add(Calendar.DATE, 6)
 
             }
+            MONTH->{
+                startDate.add(Calendar.DATE,- startDate.get(Calendar.DAY_OF_MONTH)+1)
+                finalEndDate = startDate.clone() as Calendar
+                finalEndDate.add(Calendar.MONTH, 1)
+                finalEndDate.add(Calendar.DATE,-1)
+
+            }
             else -> throw IllegalArgumentException("Unsupported selectionMode: $selectionMode")
         }
         Log.i(TAG, "Selected dates: Start(${printDate(startDate)})-End(${printDate(finalEndDate)}) for mode:$selectionMode")
