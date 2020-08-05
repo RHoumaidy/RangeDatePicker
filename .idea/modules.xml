@@ -5,6 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/AndroidStudioProjects-CalendarDateRangePicker.iml" filepath="$PROJECT_DIR$/.idea/modules/AndroidStudioProjects-CalendarDateRangePicker.iml" group="CalendarDateRangePicker" />
       <module fileurl="file://$PROJECT_DIR$/CalendarDateRangePicker.iml" filepath="$PROJECT_DIR$/CalendarDateRangePicker.iml" group="CalendarDateRangePicker" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CalendarDateRangePicker-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CalendarDateRangePicker-app.iml" group="CalendarDateRangePicker/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RangeDatePicker.iml" filepath="$PROJECT_DIR$/.idea/modules/RangeDatePicker.iml" group="RangeDatePicker" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/RangeDatePicker-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/RangeDatePicker-app.iml" group="RangeDatePicker/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/awesome-calendar/RangeDatePicker-awesome-calendar.iml" filepath="$PROJECT_DIR$/.idea/modules/awesome-calendar/RangeDatePicker-awesome-calendar.iml" group="RangeDatePicker/awesome-calendar" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="CalendarDateRangePicker/app" />
       <module fileurl="file://$PROJECT_DIR$/awesome-calendar/awesome-calendar.iml" filepath="$PROJECT_DIR$/awesome-calendar/awesome-calendar.iml" group="CalendarDateRangePicker/awesome-calendar" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/awesome-calendar/com.archit.calendar-awesome-calendar.iml" filepath="$PROJECT_DIR$/.idea/modules/awesome-calendar/com.archit.calendar-awesome-calendar.iml" group="CalendarDateRangePicker/awesome-calendar" />

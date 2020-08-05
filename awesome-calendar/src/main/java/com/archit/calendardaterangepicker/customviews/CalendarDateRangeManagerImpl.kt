@@ -141,7 +141,7 @@ internal class CalendarDateRangeManagerImpl(startMonthDate: Calendar,
             }
             FREE_RANGE -> finalEndDate = endDate
             WEEK -> {
-                startDate.add(Calendar.DATE, calendarStyleAttributes.weekOffset - (  startDate.get(Calendar.DAY_OF_WEEK) - Calendar.SUNDAY))
+                startDate.add(Calendar.DATE, (-(startDate.get(Calendar.DAY_OF_WEEK) - Calendar.SUNDAY) - (7-calendarStyleAttributes.weekOffset))%7)
                 finalEndDate = startDate.clone() as Calendar
                 finalEndDate.add(Calendar.DATE, 6)
 

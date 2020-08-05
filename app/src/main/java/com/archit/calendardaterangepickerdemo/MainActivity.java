@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
         calendar.setFonts(typeface);
 
         calendar.setCalendarListener(calendarListener);
-        calendar.setDateSelectionMode(CalendarStyleAttributes.DateSelectionMode.WEEK);
+        calendar.setDateSelectionMode(CalendarStyleAttributes.DateSelectionMode.MONTH);
+        calendar.setWeekOffset(6);
 //        calendar.setFixedDaysSelection(6);
         findViewById(R.id.btnReset).setOnClickListener(v -> calendar.resetAllSelectedViews());
 
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         final Calendar startMonth = Calendar.getInstance();
         startMonth.set(2019, Calendar.DECEMBER, 20);
         final Calendar endMonth = (Calendar) startMonth.clone();
-        endMonth.add(Calendar.MONTH, 5);
+        endMonth.add(Calendar.MONTH, 15);
         Log.d(TAG, "Start month: " + startMonth.getTime().toString() + " :: End month: " + endMonth.getTime().toString());
         calendar.setVisibleMonthRange(startMonth, endMonth);
 
@@ -53,8 +54,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "startDateSelectable: " + startDateSelectable.getTime().toString() + " :: endDateSelectable: " + endDateSelectable.getTime().toString());
         calendar.setSelectableDateRange(startDateSelectable, endDateSelectable);
 
-        final Calendar startSelectedDate = (Calendar) startDateSelectable.clone();
-        startSelectedDate.add(Calendar.DATE, 10);
+        final Calendar startSelectedDate =  Calendar.getInstance();
         final Calendar endSelectedDate = (Calendar) endDateSelectable.clone();
         endSelectedDate.add(Calendar.DATE, -10);
         Log.d(TAG, "startSelectedDate: " + startSelectedDate.getTime().toString() + " :: endSelectedDate: " + endSelectedDate.getTime().toString());
@@ -64,8 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         final Calendar current = (Calendar) startMonth.clone();
-        current.add(Calendar.MONTH, 1);
-        calendar.setCurrentMonth(current);
+        calendar.setCurrentMonth(Calendar.getInstance());
 //        calendar.setFixedDaysSelection(2);
     }
 
